@@ -2,26 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #f7f7f7;
+}
+.nav-bar {
+  height: 80px;
+}
+.slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper button svg {
+  background-color: transparent;
+  color: #e2e2e2;
+}
+
+.slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper button svg:hover {
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 20px;
+}
+.row .grid .product .grid .w-auto .product-item .thumnail img {
+  height: 240px;
+  width: auto;
+}
+.dimmer .tiny .header div img {
+  width: 8rem;
+  height: 2rem;
+}
+.dimmer .tiny .actions {
+  border-top: none !important;
+  padding: 1rem 4rem !important;
+  background-color: #fff !important;
 }
