@@ -13,6 +13,9 @@ body {
   color: #e2e2e2;
 }
 
+.slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper .image-gallery-swipe .image-gallery-slides .image-gallery-slide {
+ z-index: -1;
+}
 .slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper button svg:hover {
   background-color: #ccc;
   color: #fff;
@@ -20,7 +23,7 @@ body {
 }
 .row .grid .product .grid .w-auto .product-item .thumnail img {
   height: 240px;
-  width: auto;
+  width: 100%;
 }
 .dimmer .tiny .header div img {
   width: 8rem;

@@ -1,11 +1,13 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import RegisterModal from "@/components/Modal/registerModal";
 import LoginModal from "@/components/Modal/loginModal";
 import { IconSearch, IconCart, IconUser } from "../../Icons/Icons";
 import { getProfileUser } from "@/utils/authen";
+import { Dropdown } from 'semantic-ui-react'
+
 
 export default function NavigationBar() {
   const user = getProfileUser();
@@ -16,7 +18,7 @@ export default function NavigationBar() {
     if (type === "login") setOpenLoginModal(true);
     else setOpenRegisterModal(true);
   };
-  tiếp theo là xử lý UI + logic logout 
+
   return (
     <>
       <div className="row nav-bar">
@@ -84,9 +86,18 @@ export default function NavigationBar() {
 
                 <div className="flex justify-between items-center">
                   <Image alt="Next shop user" src={IconUser} width={25} height={25} />
-                  <span className="ml-[5px]">{user?.name}</span>
+                  <span className="ml-[5px] font-semibold">{user?.name}</span>
                 </div>
-                <div>Đăng xuất</div>
+                <div >
+
+
+                <Dropdown text={user?.name} className="font-semibold">
+                  <Dropdown.Menu>
+                   <Dropdown.Item text="Đăng xuất" icon="sign-out"/>
+                  </Dropdown.Menu>
+                </Dropdown>
+
+                </div>
               </div>
             )}
           </div>

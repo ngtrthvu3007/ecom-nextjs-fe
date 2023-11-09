@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div className="row">
-      <div className="grid grid-cols-9 gap-4 m-auto">
+      <div className="grid grid-cols-12 gap-4  m-auto">
         <Main data={listIPhone} type="iPhone" />
         <Main data={listMacbook} type="MacBook" />
       </div>
