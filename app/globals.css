@@ -8,13 +8,28 @@ body {
 .nav-bar {
   height: 80px;
 }
+.nav-bar .sticky .grid .menu {
+  z-index: 2;
+  background-color: #fff !important;
+}
+.nav-bar .sticky .grid .ui .item {
+  color: #000 !important;
+  min-height: 50px;
+}
+
 .slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper button svg {
   background-color: transparent;
   color: #e2e2e2;
 }
 
-.slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper .image-gallery-swipe .image-gallery-slides .image-gallery-slide {
- z-index: -1;
+.slider
+  .image-gallery
+  .image-gallery-content
+  .image-gallery-slide-wrapper
+  .image-gallery-swipe
+  .image-gallery-slides
+  .image-gallery-slide {
+  z-index: -1;
 }
 .slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper button svg:hover {
   background-color: #ccc;

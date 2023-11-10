@@ -6,28 +6,25 @@ import RegisterModal from "@/components/Modal/registerModal";
 import LoginModal from "@/components/Modal/loginModal";
 import { IconSearch, IconCart, IconUser } from "../../Icons/Icons";
 import { getProfileUser } from "@/utils/authen";
-import { Dropdown } from 'semantic-ui-react'
-
+import { Dropdown, Icon, Sidebar, Menu } from "semantic-ui-react";
 
 export default function NavigationBar() {
   const user = getProfileUser();
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
-
+  const [visible, setVisible] = React.useState(false);
   const onOpenModal = (type) => {
     if (type === "login") setOpenLoginModal(true);
     else setOpenRegisterModal(true);
   };
-
+  const openSideBar = () => setVisible(true);
   return (
     <>
       <div className="row nav-bar">
         <div className="flex w-full h-full bg-[#515154] sticky text-white">
-          <div
-            className="grid grid-cols-12 m-auto gap-4
-          cursor-pointer">
-            <div className="flex items-center col-span-3">
-              <div className="logo mr-6">
+          <div className="grid grid-cols-12 gap-4 w-full  cursor-pointer">
+            <div className="flex items-center col-span-3 col-start-2 sm:col-start-1 sm:ml-4">
+              <div className="logo mr-6  sm:ml-[0.5rem]">
                 <Link href="/">
                   <svg aria-label="Next.js logotype" height="18" role="img" viewBox="0 0 394 79">
                     <path
@@ -57,16 +54,17 @@ export default function NavigationBar() {
                   </svg>
                 </Link>
               </div>
-              <div className="mx-2">iPhone</div>
-              <div className="mx-2">Macbook</div>
+              <div className="mx-2  lg:hidden md:hidden sm:hidden">iPhone</div>
+              <div className="mx-2 lg:hidden md:hidden sm:hidden">Macbook</div>
+              <div className="mx-2  lg:hidden md:hidden sm:hidden">Apple Watch</div>
             </div>
-            <div className=" grid-cols-12 col-span-6 text-black flex relative">
+            <div className=" col-start-5 col-span-4 sm:hidden text-black flex items-center relative">
               <input
                 type="text"
                 placeholder="Tên sản phẩm..."
                 className="w-full outline-none rounded-lg h-[35px] px-5 "
               />
-              <div className="absolute top-[8px] right-[10px] ">
+              <div className="absolute top-[30px] right-[10px]  ">
                 <Image src={IconSearch} alt="Next shop searching" width={20} height={20} blurDataURL="data:..." />
               </div>
             </div>
@@ -81,24 +79,42 @@ export default function NavigationBar() {
                 </button>
               </div>
             ) : (
-              <div className="flex justify-between items-center col-start-10  col-span-3 ">
-                <Image alt="Next shop cart" src={IconCart} width={25} height={25} />
-
-                <div className="flex justify-between items-center">
-                  <Image alt="Next shop user" src={IconUser} width={25} height={25} />
-                  <span className="ml-[5px] font-semibold">{user?.name}</span>
+              <>
+                <div className="col-start-10 col-span-3 flex justify-start items-center sm:hidden ">
+                  <div className="md:hidden sm:hidden mr-4 ">
+                    <Image alt="Next shop cart" src={IconCart} width={25} height={25} />
+                  </div>
+                  <div className="flex justify-start items-center col-start-11 md:col-start-10 col-span-3">
+                    <Image alt="Next shop user" src={IconUser} width={25} height={25} className="mr-[8px]" />
+                    <div className="text-[18px] ">
+                      <Dropdown text={user?.name} className="font-semibold">
+                        <Dropdown.Menu>
+                          <Dropdown.Item text="Đăng xuất" icon="sign-out" />
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </div>
                 </div>
-                <div >
-
-
-                <Dropdown text={user?.name} className="font-semibold">
-                  <Dropdown.Menu>
-                   <Dropdown.Item text="Đăng xuất" icon="sign-out"/>
-                  </Dropdown.Menu>
-                </Dropdown>
-
+                <div
+                  className=" lg:hidden md:hidden sm:col-start-12 sm:col-span-3 flex justify-start items-center"
+                  onClick={() => openSideBar()}>
+                  <Icon name="bars" size="big" />
                 </div>
-              </div>
+                <Sidebar
+                  as={Menu}
+                  animation="push"
+                  icon="labeled"
+                  inverted
+                  onHide={() => setVisible(false)}
+                  vertical
+                  direction="left"
+                  visible={visible}
+                  width="thin">
+                  <Menu.Item as="a">Home</Menu.Item>
+                  <Menu.Item as="a">Games</Menu.Item>
+                  <Menu.Item as="a">Channels</Menu.Item>
+                </Sidebar>
+              </>
             )}
           </div>
         </div>

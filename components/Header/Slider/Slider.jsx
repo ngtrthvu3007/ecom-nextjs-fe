@@ -7,7 +7,7 @@ function renderLeftNav(onClick, disabled) {
     <button
       type="button"
       style={{ left: "55px", zIndex: "10" }}
-      className="image-gallery-left-nav absolute"
+      className="image-gallery-left-nav absolute sm:hidden"
       aria-label="Prev Slide"
       disabled={disabled}
       onClick={onClick}>
@@ -31,7 +31,7 @@ function renderRightNav(onClick, disabled) {
   return (
     <button
       type="button"
-      className="image-gallery-right-nav absolute "
+      className="image-gallery-right-nav absolute sm:hidden"
       aria-label="Next Slide"
       disabled={disabled}
       onClick={onClick}
