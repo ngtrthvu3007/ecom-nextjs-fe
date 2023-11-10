@@ -5,8 +5,8 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className=" h-[250px] mt-12 w-full bg-[#1d1d1f] text-white">
-        <div className="grid grid-cols-9 m-auto">
-          <div className="col-start-3 col-span-4 mt-14 ">
+        <div className="grid grid-cols-9  m-auto">
+          <div className="col-start-2  col-span-4 mt-14 sm:hidden">
             <Link href="/">
               <svg aria-label="Next.js logotype" height="25" role="img" viewBox="0 0 394 79">
                 <path
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           <div
-            className="col-start-7 col-span-2
+            className="col-start-7 col-span-2 sm:col-start-2 sm:col-span-6
            mt-14 ml-[10px] ">
             <div className="text-2xl font-bold">About Me</div>
             <div>Author: Nguyen Tran The Vu (Vincent)</div>
