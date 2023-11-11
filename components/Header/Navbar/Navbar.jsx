@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import RegisterModal from "@/components/Modal/registerModal";
 import LoginModal from "@/components/Modal/loginModal";
-import { IconSearch, IconCart, IconUser } from "../../Icons/Icons";
+import { IconSearch, IconCart, IconUser, Logo } from "../../Icons/Icons";
 import { getProfileUser } from "@/utils/authen";
 import { Dropdown, Icon, Sidebar, Menu } from "semantic-ui-react";
 
@@ -58,7 +58,7 @@ export default function NavigationBar() {
               <div className="mx-2 lg:hidden md:hidden sm:hidden">Macbook</div>
               <div className="mx-2  lg:hidden md:hidden sm:hidden">Apple Watch</div>
             </div>
-            <div className=" col-start-5 col-span-4 sm:hidden text-black flex items-center relative">
+            <div className=" col-start-5 col-span-4 sm:col-start-5 sm:col-span-6 xs:col-start-6 xs:col-span-4 text-black flex items-center relative">
               <input
                 type="text"
                 placeholder="Tên sản phẩm..."
@@ -69,15 +69,57 @@ export default function NavigationBar() {
               </div>
             </div>
             {!user ? (
-              <div className="flex items-center justify-between col-span-2">
-                <button className="text-red-500" onClick={() => onOpenModal("login")}>
-                  Đăng nhập
-                </button>
-                <span className="mx-[5px] cursor-default"> Bạn chưa có tài khoản? </span>
-                <button className="text-red-500" onClick={() => onOpenModal("register")}>
-                  Đăng ký
-                </button>
-              </div>
+              <>
+                <div className="flex items-center justify-between col-span-2 xl:col-start-10 lg:col-start-10 md:col-start-10 md:col-span-3 sm:hidden">
+                  <div>
+                    <button className="text-red-500 mr-3" onClick={() => onOpenModal("login")}>
+                      Đăng nhập
+                    </button>
+                    <button className="text-red-500" onClick={() => onOpenModal("register")}>
+                      Đăng ký
+                    </button>
+                  </div>
+                </div>
+                <div
+                  className="xl:hidden lg:hidden md:hidden sm:col-start-12 sm:col-span-3 flex justify-start items-center"
+                  onClick={() => openSideBar()}>
+                  <Icon name="bars" size="big" />
+                </div>
+                <Sidebar
+                  as={Menu}
+                  animation="push"
+                  icon="labeled"
+                  onHide={() => setVisible(false)}
+                  vertical
+                  direction="left"
+                  visible={visible}
+                  width="thin">
+                  <Menu.Item as="a">
+                    <Image src={Logo} />
+                  </Menu.Item>
+                  {user ? (
+                    <>
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                        <Icon name="user" size="tiny" />
+                        <span>{user?.name}</span>
+                      </Menu.Item>
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                        <Icon name="shopping cart" size="tiny" />
+                        <span> Giỏ hàng</span>
+                      </Menu.Item>
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                        <Icon name="sign out" size="tiny" />
+                        <span>Đăng xuất</span>
+                      </Menu.Item>
+                    </>
+                  ) : (
+                    <>
+                      <Menu.Item>Đăng nhập</Menu.Item>
+                      <Menu.Item>Đăng ký</Menu.Item>
+                    </>
+                  )}
+                </Sidebar>
+              </>
             ) : (
               <>
                 <div className="col-start-10 col-span-3 flex justify-start items-center sm:hidden ">
@@ -96,7 +138,7 @@ export default function NavigationBar() {
                   </div>
                 </div>
                 <div
-                  className=" lg:hidden md:hidden sm:col-start-12 sm:col-span-3 flex justify-start items-center"
+                  className="xl:hidden lg:hidden md:hidden sm:col-start-12 sm:col-span-3 flex justify-start items-center"
                   onClick={() => openSideBar()}>
                   <Icon name="bars" size="big" />
                 </div>
@@ -104,15 +146,32 @@ export default function NavigationBar() {
                   as={Menu}
                   animation="push"
                   icon="labeled"
-                  inverted
                   onHide={() => setVisible(false)}
                   vertical
                   direction="left"
                   visible={visible}
                   width="thin">
-                  <Menu.Item as="a">Home</Menu.Item>
-                  <Menu.Item as="a">Games</Menu.Item>
-                  <Menu.Item as="a">Channels</Menu.Item>
+                  <Menu.Item as="a">
+                    <Image src={Logo} />
+                  </Menu.Item>
+                  {user ? (
+                    <>
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                        <Icon name="user" size="tiny" />
+                        <span>{user?.name}</span>
+                      </Menu.Item>
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                        <Icon name="shopping cart" size="tiny" />
+                        <span> Giỏ hàng</span>
+                      </Menu.Item>
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                        <Icon name="sign out" size="tiny" />
+                        <span>Đăng xuất</span>
+                      </Menu.Item>
+                    </>
+                  ) : (
+                    <Menu.Item>Đăng nhập / Đăng ký</Menu.Item>
+                  )}
                 </Sidebar>
               </>
             )}

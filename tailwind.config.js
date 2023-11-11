@@ -8,13 +8,14 @@ module.exports = {
   ],
   theme: {
     screens: {
+      xs: { max: "375px" },
       sm: { max: "640px" },
       // => @media (max-width: 640px and max-width: 767px) { ... }
 
       md: { min: "645px", max: "800px" },
       // => @media (max-width: 768px and max-width: 1023px) { ... }
 
-      lg: { min: "1024px" },
+      lg: { min: "1024px", max: "1279px" },
       // => @media (max-width: 1024px and max-width: 1279px) { ... }
 
       xl: { min: "1280px" },

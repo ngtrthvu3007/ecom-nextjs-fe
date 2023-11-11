@@ -8,7 +8,20 @@ body {
 .nav-bar {
   height: 80px;
 }
+@screen lg {
+  .nav-bar .sticky .grid .menu {
+    display: none !important;
+  }
+}
+
+@screen md {
+  .nav-bar .sticky .grid .menu {
+    display: none !important;
+  }
+}
+
 .nav-bar .sticky .grid .menu {
+  padding-top: 20px;
   z-index: 2;
   background-color: #fff !important;
 }
@@ -21,7 +34,9 @@ body {
   background-color: transparent;
   color: #e2e2e2;
 }
-
+.slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper .image-gallery-swipe .image-gallery-slides {
+  z-index: -2;
+}
 .slider
   .image-gallery
   .image-gallery-content
@@ -36,6 +51,25 @@ body {
   color: #fff;
   border-radius: 20px;
 }
+@screen sm {
+  .slider {
+    z-index: -5;
+  }
+
+  .slider .image-gallery .image-gallery-content .image-gallery-slide-wrapper .image-gallery-bullets {
+    display: none;
+  }
+  .nav-bar .sticky .grid .menu .flex {
+    display: flex !important;
+    align-items: center;
+    flex-direction: unset !important;
+    padding: 10px 15px;
+    padding-right: 25px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
 .row .grid .product .grid .w-auto .product-item .thumnail img {
   height: 240px;
   width: 100%;

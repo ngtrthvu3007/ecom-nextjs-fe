@@ -51,7 +51,7 @@ export default function Main(props) {
         </div>
         {!loadMore && (
           <div className="grid grid-cols-5 md:grid-cols-1 sm:grid-cols-1">
-            <div className="lg:col-start-3  mt-12 text-center mx-auto" onClick={() => handleClick()}>
+            <div className=" xl:col-start-3 lg:col-start-3  mt-12 text-center mx-auto" onClick={() => handleClick()}>
               <div className="min-w-[150px] w-full px-8 py-4 rounded-lg border border-blue-500 text-blue-500 hover:bg-slate-200">
                 Xem Thêm {type}
               </div>
