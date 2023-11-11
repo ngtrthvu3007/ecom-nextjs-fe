@@ -4,7 +4,7 @@ export const saveAccessToken = (access_token) => {
   localStorage.setItem("access_token", access_token);
 };
 
-export const clearAccessToken = () => {
+export const clearAccessToken = async () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("user");
 };

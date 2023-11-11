@@ -4,7 +4,7 @@ import { domain } from "@/constants";
 const path = "users/";
 
 export const registerUser = async (params) => {
-  const { name, password, confirm_password, email, phone, address, isAdmin } = params;
+  const { name, password, confirm_password, email, phone, address, isAdmin = true } = params;
   const payload = {
     name,
     password,

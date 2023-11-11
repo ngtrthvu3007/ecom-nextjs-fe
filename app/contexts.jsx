@@ -1,10 +1,10 @@
 import { createContext, useState } from "react";
-import { getAccessTokenFromLS, getProfileFromLS } from "../utils/authen";
+import { getAccessTokenFromLS, getProfileUser } from "../utils/authen";
 
 const initialAppContext = {
   isAuthenticated: false, //Boolean(getAccessTokenFromLS()),
   setIsAuthenticated: () => null,
-  profile: false, //getProfileFromLS(),
+  profile: getProfileUser(),
   setProfile: () => null,
   // extendedPurchases: [],
   // setExtendedPurchases: () => null,

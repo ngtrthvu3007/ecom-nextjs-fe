@@ -1,15 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AppContext } from "../../../app/contexts";
 import RegisterModal from "@/components/Modal/registerModal";
 import LoginModal from "@/components/Modal/loginModal";
 import { IconSearch, IconCart, IconUser, Logo } from "../../Icons/Icons";
-import { getProfileUser } from "@/utils/authen";
+import { getProfileUser, clearAccessToken } from "@/utils/authen";
 import { Dropdown, Icon, Sidebar, Menu } from "semantic-ui-react";
 
 export default function NavigationBar() {
-  const user = getProfileUser();
+  const { setProfile, profile } = useContext(AppContext);
+
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const [visible, setVisible] = React.useState(false);
@@ -18,6 +20,12 @@ export default function NavigationBar() {
     else setOpenRegisterModal(true);
   };
   const openSideBar = () => setVisible(true);
+
+  const handleLogout = async () => {
+    await clearAccessToken();
+    setProfile(getProfileUser());
+  };
+
   return (
     <>
       <div className="row nav-bar">
@@ -68,7 +76,7 @@ export default function NavigationBar() {
                 <Image src={IconSearch} alt="Next shop searching" width={20} height={20} blurDataURL="data:..." />
               </div>
             </div>
-            {!user ? (
+            {!profile ? (
               <>
                 <div className="flex items-center justify-between col-span-2 xl:col-start-10 lg:col-start-10 md:col-start-10 md:col-span-3 sm:hidden">
                   <div>
@@ -97,17 +105,17 @@ export default function NavigationBar() {
                   <Menu.Item as="a">
                     <Image src={Logo} />
                   </Menu.Item>
-                  {user ? (
+                  {profile ? (
                     <>
                       <Menu.Item href="https://dev.hainong.vn/" className="flex">
                         <Icon name="user" size="tiny" />
-                        <span>{user?.name}</span>
+                        <span>{profile?.name}</span>
                       </Menu.Item>
                       <Menu.Item href="https://dev.hainong.vn/" className="flex">
                         <Icon name="shopping cart" size="tiny" />
                         <span> Giỏ hàng</span>
                       </Menu.Item>
-                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex" onClick={() => handleLogout()}>
                         <Icon name="sign out" size="tiny" />
                         <span>Đăng xuất</span>
                       </Menu.Item>
@@ -127,11 +135,11 @@ export default function NavigationBar() {
                     <Image alt="Next shop cart" src={IconCart} width={25} height={25} />
                   </div>
                   <div className="flex justify-start items-center col-start-11 md:col-start-10 col-span-3">
-                    <Image alt="Next shop user" src={IconUser} width={25} height={25} className="mr-[8px]" />
+                    <Image alt="Next shop profile" src={IconUser} width={25} height={25} className="mr-[8px]" />
                     <div className="text-[18px] ">
-                      <Dropdown text={user?.name} className="font-semibold">
+                      <Dropdown text={profile?.name} className="font-semibold">
                         <Dropdown.Menu>
-                          <Dropdown.Item text="Đăng xuất" icon="sign-out" />
+                          <Dropdown.Item text="Đăng xuất" icon="sign-out" onClick={() => handleLogout()} />
                         </Dropdown.Menu>
                       </Dropdown>
                     </div>
@@ -154,17 +162,17 @@ export default function NavigationBar() {
                   <Menu.Item as="a">
                     <Image src={Logo} />
                   </Menu.Item>
-                  {user ? (
+                  {profile ? (
                     <>
                       <Menu.Item href="https://dev.hainong.vn/" className="flex">
                         <Icon name="user" size="tiny" />
-                        <span>{user?.name}</span>
+                        <span>{profile?.name}</span>
                       </Menu.Item>
                       <Menu.Item href="https://dev.hainong.vn/" className="flex">
                         <Icon name="shopping cart" size="tiny" />
                         <span> Giỏ hàng</span>
                       </Menu.Item>
-                      <Menu.Item href="https://dev.hainong.vn/" className="flex">
+                      <Menu.Item href="https://dev.hainong.vn/" className="flex" onClick={() => handleLogout()}>
                         <Icon name="sign out" size="tiny" />
                         <span>Đăng xuất</span>
                       </Menu.Item>

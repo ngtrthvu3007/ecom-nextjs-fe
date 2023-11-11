@@ -21,18 +21,18 @@ function LoginModal(props) {
   const loginMutation = useMutation({
     mutationFn: (body) => loginUser(body),
   });
+
   const formik = useFormik({
     initialValues,
     validationSchema: yubLoginSchema,
     onSubmit: async (values, { resetForm }) => {
       loginMutation.mutate(values, {
         onSuccess: (data) => {
-          const { access_token, refresh_token } = data.result;
+          const { access_token, user } = data.result;
           saveAccessToken(access_token);
-          console.log(data);
           setIsAuthenticated(true);
-          setProfile(new_user);
-          setProfileUser(new_user);
+          setProfile(user);
+          setProfileUser(user);
           setOpen(false);
           resetForm();
         },

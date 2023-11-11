@@ -37,7 +37,7 @@ function RegisterModal(props) {
     };
     loginMutation.mutate(body, {
       onSuccess: (data) => {
-        const { access_token, refresh_token } = data.result;
+        const { access_token } = data.result;
         saveAccessToken(access_token);
       },
       onError: (error) => {
@@ -53,13 +53,12 @@ function RegisterModal(props) {
     onSubmit: async (values, { resetForm }) => {
       registerMutation.mutate(values, {
         onSuccess: (data) => {
-          const { new_user } = data.result;
+          const { newUser } = data.result;
           setIsAuthenticated(true);
-          setProfile(new_user);
-          setProfileUser(new_user);
+          setProfile(newUser);
+          setProfileUser(newUser);
           setOpen(false);
           loginAfterRegister(values.email, values.password);
-          console.log(values);
           resetForm();
         },
         onError: (error) => {
