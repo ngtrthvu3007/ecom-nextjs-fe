@@ -3,9 +3,9 @@ import { getAccessTokenFromLS, getProfileUser } from "../utils/authen";
 
 const initialAppContext = {
   isAuthenticated: false, //Boolean(getAccessTokenFromLS()),
-  setIsAuthenticated: () => null,
+  setIsAuthenticated: () => {},
   profile: getProfileUser(),
-  setProfile: () => null,
+  setProfile: () => {},
   // extendedPurchases: [],
   // setExtendedPurchases: () => null,
   // reset: () => null,
