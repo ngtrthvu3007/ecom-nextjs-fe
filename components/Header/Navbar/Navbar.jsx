@@ -39,7 +39,7 @@ export default function NavigationBar() {
     <>
       <div className="row nav-bar">
         <div className="flex w-full h-full bg-[#515154] sticky text-white">
-          <div className="grid grid-cols-12 gap-4 w-full  cursor-pointer">
+          <div className="grid grid-cols-12 gap-4 w-full">
             <div className="flex items-center col-span-3 col-start-2 sm:col-start-1 sm:ml-4">
               <div className="logo mr-6  sm:ml-[0.5rem]">
                 <Link href="/">

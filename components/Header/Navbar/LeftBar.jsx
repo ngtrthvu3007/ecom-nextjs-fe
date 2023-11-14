@@ -13,7 +13,7 @@ const LeftBar = ({ visible, profile, setVisible, onOpenModal }) => {
       direction="left"
       visible={visible}
       width="thin">
-      <Menu.Item as="a">
+      <Menu.Item href="/">
         <Image src={Logo} alt="next shop" />
       </Menu.Item>
       {profile ? (
@@ -22,10 +22,17 @@ const LeftBar = ({ visible, profile, setVisible, onOpenModal }) => {
             <Icon name="user" size="tiny" />
             <span>{profile?.name}</span>
           </Menu.Item>
+          {profile?.isAdmin && (
+            <Menu.Item href="https://dev.hainong.vn/" className="flex">
+              <Icon name="dashboard" size="tiny" />
+              <span> Quản lý</span>
+            </Menu.Item>
+          )}
           <Menu.Item href="https://dev.hainong.vn/" className="flex">
             <Icon name="shopping cart" size="tiny" />
             <span> Giỏ hàng</span>
           </Menu.Item>
+
           <Menu.Item href="https://dev.hainong.vn/" className="flex" onClick={() => handleLogout()}>
             <Icon name="sign out" size="tiny" />
             <span>Đăng xuất</span>
