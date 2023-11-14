@@ -1,22 +1,22 @@
 "use client";
 
 export const saveAccessToken = (access_token) => {
-  localStorage.setItem("access_token", access_token);
+  sessionStorage.setItem("access_token", access_token);
 };
 
 export const clearAccessToken = async () => {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("user");
+  sessionStorage.removeItem("access_token");
+  sessionStorage.removeItem("user");
 };
-export const getAccessToken = () => localStorage.getItem("access_token") || "";
+export const getAccessToken = () => sessionStorage.getItem("access_token") || "";
 
 export const getProfileUser = () => {
   let result = null;
   if (typeof window !== "undefined") {
-    result = localStorage.getItem("user");
+    result = sessionStorage.getItem("user");
     return result ? JSON.parse(result) : null;
   }
 };
 export const setProfileUser = (user) => {
-  localStorage.setItem("user", JSON.stringify(user));
+  sessionStorage.setItem("user", JSON.stringify(user));
 };

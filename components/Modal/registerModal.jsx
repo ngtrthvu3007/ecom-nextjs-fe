@@ -82,9 +82,10 @@ function RegisterModal(props) {
   return (
     <Modal open={open} onClose={() => setOpen(false)} onOpen={() => setOpen(true)} size="tiny" closeIcon>
       <Header>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-around">
           <Image alt="Next Shop Logo" src={Logo.src} size="massive" />
           <span>Đăng ký người dùng</span>
+          <span>{""}</span>
         </div>
       </Header>
 
