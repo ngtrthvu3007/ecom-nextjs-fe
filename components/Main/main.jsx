@@ -19,7 +19,7 @@ export default function Main(props) {
         <div className="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-4 m-auto text-center">
           {data.slice(0, numItems).map((product, index) => {
             return (
-              <Link href={`/product/${product.sku}`}>
+              <Link href={`/product/${product.sku}`} key={index}>
                 <div
                   key={index}
                   className="w-auto m-0 bg-white border border-slate-200 rounded hover:border-slate-300"

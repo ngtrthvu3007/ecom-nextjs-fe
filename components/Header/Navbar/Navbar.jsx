@@ -78,7 +78,6 @@ export default function NavigationBar() {
                 </div>
                 <div className="flex justify-start items-center col-start-11 md:col-start-10 col-span-3">
                   <ImageIcon alt="Next shop profile" src={IconUser} />
-
                   <div className="text-[18px] ml-2 ">
                     <Dropdown text={profile?.name} className="font-semibold">
                       <Dropdown.Menu>
