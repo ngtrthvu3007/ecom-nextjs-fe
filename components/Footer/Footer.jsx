@@ -13,10 +13,10 @@ export default function Footer() {
             </Link>
             <div className="mt-4">
               Xin chào, tôi là Vũ aka Vincent, Đây là trang web bán các sản phẩm iPhone, Macbook dựa trên ý tưởng thiết
-              kế của Shopdunk. Trang web này được xây dựng bằng NextJS version 13 và API miễn phí từ
+              kế của Shopdunk. Trang web này được xây dựng bằng NextJS version 13 và API miễn phí từ{" "}
               <a className="text-blue-400" href="https://vu-ecom-api.onrender.com/">
                 dự án
-              </a>
+              </a>{" "}
               này.
             </div>
             <div className="mt-2">
