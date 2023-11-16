@@ -18,6 +18,8 @@ body {
   .nav-bar .sticky .grid .menu {
     display: none !important;
   }
+
+
 }
 
 .nav-bar .sticky .grid .menu {
@@ -68,12 +70,34 @@ body {
     font-size: 16px;
     font-weight: 500;
   }
+
 }
 
 .row .grid .product .grid .w-auto .product-item .thumnail img {
   height: 240px;
   width: 100%;
 }
+.row .grid .product-relation a .w-auto .product-item .thumnail img {
+  height: 240px;
+  padding: 0 10px;
+}
+.row .grid .product-relation  {
+ width: 100%;
+ overflow-x:  scroll;
+}
+.row .grid .product-relation  a .w-auto  {
+  width: 250px;
+}
+
+
+
+@screen md {
+  .row .grid .product-relation a .w-auto .product-item .thumnail img {
+    height: 140px;
+    padding: 0 10px;
+  }
+}
+
 .dimmer .tiny .header div img {
   width: 8rem;
   height: 2rem;
