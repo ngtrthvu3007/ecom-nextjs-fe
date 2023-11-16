@@ -18,9 +18,9 @@ function LoginModal(props) {
   const { setIsAuthenticated, setProfile } = useContext(AppContext);
   const { open, setOpen } = props;
 
-    const loginMutation = useMutation({
-      mutationFn: (body) => loginUser(body),
-    });
+  const loginMutation = useMutation({
+    mutationFn: (body) => loginUser(body),
+  });
 
   const formik = useFormik({
     initialValues,

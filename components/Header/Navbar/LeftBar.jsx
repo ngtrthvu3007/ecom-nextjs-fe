@@ -18,7 +18,7 @@ const LeftBar = ({ visible, profile, setVisible, onOpenModal }) => {
       </Menu.Item>
       {profile ? (
         <>
-          <Menu.Item href="https://dev.hainong.vn/" className="flex">
+          <Menu.Item href="/user" className="flex">
             <Icon name="user" size="tiny" />
             <span>{profile?.name}</span>
           </Menu.Item>

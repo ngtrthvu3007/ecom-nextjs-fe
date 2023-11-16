@@ -8,7 +8,12 @@ import LeftBar from "./LeftBar";
 import ImageIcon from "./ImageIcon";
 import { getProfileUser, clearAccessToken } from "@/utils/authen";
 import { Dropdown, Icon } from "semantic-ui-react";
-import { IconSearch, IconCart, IconUser, LogoNextShop } from "../../Icons/Icons";
+import {
+  IconSearch,
+  IconCart,
+  IconUser,
+  LogoNextShop,
+} from "../../Icons/Icons";
 
 export default function NavigationBar() {
   const { setProfile, profile } = useContext(AppContext);
@@ -16,7 +21,8 @@ export default function NavigationBar() {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const [visible, setVisible] = React.useState(false);
 
-  const onOpenModal = (type) => (type === "login" ? setOpenLoginModal(true) : setOpenRegisterModal(true));
+  const onOpenModal = (type) =>
+    type === "login" ? setOpenLoginModal(true) : setOpenRegisterModal(true);
 
   const openSideBar = () => setVisible(true);
 
@@ -29,7 +35,8 @@ export default function NavigationBar() {
     return (
       <div
         className="xl:hidden lg:hidden md:hidden sm:col-start-12 sm:col-span-3 flex justify-start items-center"
-        onClick={() => openSideBar()}>
+        onClick={() => openSideBar()}
+      >
         <Icon name="bars" size="big" />
       </div>
     );
@@ -48,7 +55,9 @@ export default function NavigationBar() {
               </div>
               <div className="mx-2 lg:hidden md:hidden sm:hidden">iPhone</div>
               <div className="mx-2 lg:hidden md:hidden sm:hidden">Macbook</div>
-              <div className="mx-2 lg:hidden md:hidden sm:hidden">Apple Watch</div>
+              <div className="mx-2 lg:hidden md:hidden sm:hidden">
+                Apple Watch
+              </div>
             </div>
             <div className=" col-start-5 col-span-4 sm:col-start-5 sm:col-span-6 xs:col-start-6 xs:col-span-4 text-black flex items-center relative">
               <input
@@ -63,10 +72,16 @@ export default function NavigationBar() {
             {!profile ? (
               <div className="flex items-center justify-between col-span-2 xl:col-start-10 lg:col-start-10 md:col-start-10 md:col-span-3 sm:hidden">
                 <div>
-                  <button className="text-red-500 mr-3" onClick={() => onOpenModal("login")}>
+                  <button
+                    className="text-red-500 mr-3"
+                    onClick={() => onOpenModal("login")}
+                  >
                     Đăng nhập
                   </button>
-                  <button className="text-red-500" onClick={() => onOpenModal("register")}>
+                  <button
+                    className="text-red-500"
+                    onClick={() => onOpenModal("register")}
+                  >
                     Đăng ký
                   </button>
                 </div>
@@ -80,8 +95,21 @@ export default function NavigationBar() {
                   <ImageIcon alt="Next shop profile" src={IconUser} />
                   <div className="text-[18px] ml-2 ">
                     <Dropdown text={profile?.name} className="font-semibold">
-                      <Dropdown.Menu>
-                        <Dropdown.Item text="Đăng xuất" icon="sign-out" onClick={() => handleLogout()} />
+                      <Dropdown.Menu className="cursor-pointer">
+                        <Dropdown.Item
+                          text="Tài khoản"
+                          icon="user"
+                          href="/user"
+                        />
+                        {profile?.isAdmin && (
+                          <Dropdown.Item text="Quản lý" icon="dashboard" />
+                        )}
+                        <Dropdown.Item
+                          text="Đăng xuất"
+                          icon="sign-out"
+                          className="cursor-pointer"
+                          onClick={() => handleLogout()}
+                        />
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
@@ -89,7 +117,12 @@ export default function NavigationBar() {
               </div>
             )}
             <ButtonLeftBar />
-            <LeftBar setVisible={setVisible} profile={profile} visible={visible} onOpenModal={onOpenModal} />
+            <LeftBar
+              setVisible={setVisible}
+              profile={profile}
+              visible={visible}
+              onOpenModal={onOpenModal}
+            />
           </div>
         </div>
       </div>

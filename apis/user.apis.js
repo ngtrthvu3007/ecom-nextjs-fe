@@ -26,3 +26,13 @@ export const loginUser = async (params) => {
   const response = await axios.post(`${domain}${path}/login `, payload);
   return response.data;
 };
+
+export const  updateProfile = async (params, token) => {
+  const {name, address} = params;
+  const payload = { name, address };
+
+  const response = await axios.put(`${domain}${path}/update-my-profile `, payload, { headers: {
+    'Authorization': `Bearer ${token}`
+  }});
+  return response.data;
+}

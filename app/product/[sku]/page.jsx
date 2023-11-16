@@ -46,7 +46,6 @@ const ProductDetail = () => {
           </div>
         ) : (
           <>
-
             <div className=" product-detail col-start-3  col-span-8 mt-20 mb-6 text-center">
               <div className="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-4 m-auto text-center">
                 <div

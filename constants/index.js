@@ -20,3 +20,10 @@ export const yubLoginSchema = Yup.object({
   email: Yup.string().email("Email không hợp lệ").required("Vui lòng nhập email"),
   password: Yup.string().required("Vui lòng nhập mật khẩu"),
 });
+
+export const yubEditUser = Yup.object({
+  name: Yup.string()
+  .matches(/^[a-zA-Z].*[\s\.]*$/g, "Tên người dùng phải bắt đầu bằng chữ cái")
+  .required("Vui lòng nhập tên người dùng"),
+  address: Yup.string().min(5, "Địa chỉ ít nhất 5 kí tự").required("Vui lòng nhập địa chỉ của bạn"),
+});

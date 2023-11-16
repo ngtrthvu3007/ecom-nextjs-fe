@@ -1,18 +1,19 @@
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 toast.options = {
   position: "top-right",
   autoClose: 3000,
-  hideProgressBar: false,
+  hideProgressBar: true,
   closeOnClick: true,
-  pauseOnHover: true,
+  pauseOnHover: false,
+  pauseOnFocusLoss: false,
   draggable: true,
   progress: undefined,
 };
 
 export const toastSuccess = (mess) => {
   if (mess) {
-    toast.success(`${mess}!`);
+    toast.success(`${mess}`);
   }
 };
 export const toastError = (error) => {
