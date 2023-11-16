@@ -14,8 +14,8 @@ const AccountTab = () => {
   const token = getAccessToken();
 
   const initialValues = {
-    name: profile.name,
-    address: profile.address,
+    name: profile?.name,
+    address: profile?.address,
   };
 
   const updateProfileMutaion = useMutation({
@@ -26,11 +26,7 @@ const AccountTab = () => {
     initialValues,
     validationSchema: yubEditUser,
     onSubmit: async (values) => {
-      if (
-        values.name === initialValues.name &&
-        values.address === initialValues.address
-      )
-        return;
+      if (values.name === initialValues.name && values.address === initialValues.address) return;
       else {
         updateProfileMutaion.mutate(values, {
           onSuccess: (data) => {
@@ -61,9 +57,7 @@ const AccountTab = () => {
             onChange={formik.handleChange}
             placeholder="Nhập tên người dùng"
             isRequired={false}
-            error={
-              formik.errors.name && formik.touched.name && formik.errors.name
-            }
+            error={formik.errors.name && formik.touched.name && formik.errors.name}
           />
           <FieldForm
             label="Email"
@@ -89,19 +83,11 @@ const AccountTab = () => {
             onChange={formik.handleChange}
             placeholder="Nhập địa chỉ"
             isRequired={false}
-            error={
-              formik.errors.address &&
-              formik.touched.address &&
-              formik.errors.address
-            }
+            error={formik.errors.address && formik.touched.address && formik.errors.address}
           />
         </div>
         <div className="mt-3 text-center">
-          <Button
-            color="green"
-            type="submit"
-            disabled={updateProfileMutaion.isPending}
-          >
+          <Button color="green" type="submit" disabled={updateProfileMutaion.isPending}>
             Cập nhật
           </Button>
         </div>
