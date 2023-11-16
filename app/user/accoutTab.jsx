@@ -62,7 +62,7 @@ const AccountTab = () => {
           <FieldForm
             label="Email"
             name="email"
-            value={profile.email}
+            value={profile?.email}
             placeholder="Nhập email"
             disabled={true}
             isRequired={false}
@@ -70,7 +70,7 @@ const AccountTab = () => {
           <FieldForm
             label="Số Điện Thoại"
             name="phone"
-            value={`0${profile.phone}`}
+            value={`0${profile?.phone}`}
             placeholder="Nhập số điện thoại"
             disabled={true}
             isRequired={false}
