@@ -12,7 +12,7 @@ export const getAccessToken = () => {
   let result = null;
   if (typeof window !== "undefined") {
     result = sessionStorage.getItem("access_token");
-    return result ? JSON.parse(result) : null;
+    return result ?? null;
   }
 };
 
