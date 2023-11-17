@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import NumberFormat from "@/utils/convertPrice.utils";
 const ProductRelation = ({ data }) => {
-
   return (
     <>
       <div className="grid grid-cols-9  md:grid-cols-5 gap-4">
@@ -21,8 +20,7 @@ const ProductRelation = ({ data }) => {
                     padding: "24px 5px 16px 5px",
                     boxShadow: "0px 1px 8px rgba(0, 0, 0, 0.2)",
                     maWidth: "300px",
-                  }}
-                >
+                  }}>
                   <div className="product-item">
                     <div className="thumnail" style={{ margin: "25px 0 20px" }}>
                       <Image
@@ -33,9 +31,7 @@ const ProductRelation = ({ data }) => {
                         style={{ objectFit: "scale-down" }}
                       />
                     </div>
-                    <div className="text-[16px] h-[2.5rem] font-bold leading-7 text-black">
-                      {product.name}
-                    </div>
+                    <div className="text-[16px] h-[2.5rem] font-bold leading-7 text-black">{product.name}</div>
                     <div className="mt-6 price text-[20px] font-semibold text-red-600">
                       <span>{NumberFormat(product.price)}</span>
                       <span className="text-[16px] ml-1 mb-1">VNĐ</span>

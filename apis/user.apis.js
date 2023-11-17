@@ -27,12 +27,26 @@ export const loginUser = async (params) => {
   return response.data;
 };
 
-export const  updateProfile = async (params, token) => {
-  const {name, address} = params;
+export const updateProfile = async (params, token) => {
+  const { name, address } = params;
   const payload = { name, address };
 
-  const response = await axios.put(`${domain}${path}/update-my-profile `, payload, { headers: {
-    'Authorization': `Bearer ${token}`
-  }});
+  const response = await axios.put(`${domain}${path}/update-my-profile `, payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
-}
+};
+
+export const changePassword = async (params, token) => {
+  const { new_password, password, confirm_password } = params;
+  const payload = { new_password, password, confirm_password };
+
+  const response = await axios.put(`${domain}${path}/change-password `, payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
