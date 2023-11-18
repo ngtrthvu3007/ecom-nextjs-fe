@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useContext } from "react";
-import { AppContext } from "../contexts";
+import React from "react";
 import { Tab } from "semantic-ui-react";
 import AccountTab from "./accoutTab";
 import ChangePasswordTab from "./changePasswordTab";
+
 const Profile = () => {
   const panes = [
     { menuItem: "Tài khoản ", render: () => <AccountTab /> },

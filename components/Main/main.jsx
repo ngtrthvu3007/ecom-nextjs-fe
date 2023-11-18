@@ -14,7 +14,7 @@ export default function Main(props) {
   };
   return (
     <>
-      <div className=" product col-start-3  col-span-8 mt-12 mb-6 cursor-pointer text-center">
+      <div className=" product col-start-3  col-span-8 mt-12 mb-6  text-center">
         <div className="font-bold text-[30px] mb-10 ">{type}</div>
         <div className="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-4 m-auto text-center">
           {data.slice(0, numItems).map((product, index) => {
@@ -22,7 +22,7 @@ export default function Main(props) {
               <Link href={`/product/${product.sku}`} key={index}>
                 <div
                   key={index}
-                  className="w-auto m-0 bg-white border border-slate-200 rounded hover:border-slate-300"
+                  className="w-auto m-0 bg-white border border-slate-200 rounded hover:border-slate-300 cursor-pointer"
                   style={{
                     padding: "24px 5px 16px 5px",
                     boxShadow: "0px 1px 8px rgba(0, 0, 0, 0.2)",

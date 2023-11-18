@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
+import { AppContext } from "@/app/contexts";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getProductDetail, getAllProducts } from "@/apis/products.apis";
@@ -13,11 +14,12 @@ import DiscountBox from "./discount";
 import ButtonGroup from "./ButtonGroup";
 import { IconHot } from "@/components/Icons/Icons";
 import ProductRelation from "./ProductDesc";
-
+import { addProductToLocalStorage } from "../../cart/useCart";
 
 const ProductDetail = () => {
   const sku = usePathname();
   const [open, setOpen] = useState(false);
+  const { profile } = useContext(AppContext);
 
   const { data, isLoading } = useQuery({
     queryKey: ["product_detail"],
@@ -27,18 +29,26 @@ const ProductDetail = () => {
     queryKey: ["products"],
     queryFn: getAllProducts,
   });
-  const relationProducts = list_product?.products.filter((product) => product.type === data?.type).filter(product=> !sku.includes(product.sku))
+  const relationProducts = list_product?.products
+    .filter((product) => product.type === data?.type)
+    .filter((product) => !sku.includes(product.sku));
   const openImageModal = () => setOpen(true);
+
+  const handleAddToCart = () => {
+    data.user_id = profile?._id ?? null;
+    const product = data;
+    addProductToLocalStorage(product);
+  };
 
   return (
     <div className="row">
-       <div className="bg-[#F2F2F2] h-[50px] flex items-center">
-        <Link href='/'>
-        <div className='ml-[100px] sm:ml-5 md:ml-10  mr-2 text-blue-400 font-semibold text-[16px] '>Trang chủ  </div>
+      <div className="bg-[#F2F2F2] h-[50px] flex items-center">
+        <Link href="/">
+          <div className="ml-[100px] sm:ml-5 md:ml-10  mr-2 text-blue-400 font-semibold text-[16px] ">Trang chủ </div>
         </Link>
-        <Icon name='chevron right'size='large' color="grey" />
-         <div className="ml-2 text-[#767676] font-semibold text-[16px]">{data?.name}</div>
-       </div>
+        <Icon name="chevron right" size="large" color="grey" />
+        <div className="ml-2 text-[#767676] font-semibold text-[16px]">{data?.name}</div>
+      </div>
       <div className="grid grid-cols-12 gap-4 m-auto">
         {isLoading ? (
           <div className=" product col-start-3  col-span-8 mt-12 mb-6  text-center">
@@ -64,7 +74,7 @@ const ProductDetail = () => {
                     <Image src={IconHot} alt="hot product" width={30} height={20} className="icon-hot mt-6" />
                   </div>
                   <DiscountBox />
-                  <ButtonGroup />
+                  <ButtonGroup addToCart={handleAddToCart} />
                 </div>
               </div>
             </div>

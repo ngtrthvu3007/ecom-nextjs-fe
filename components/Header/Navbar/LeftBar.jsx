@@ -28,12 +28,12 @@ const LeftBar = ({ visible, profile, setVisible, onOpenModal }) => {
               <span> Quản lý</span>
             </Menu.Item>
           )}
-          <Menu.Item href="https://dev.hainong.vn/" className="flex">
+          <Menu.Item href="/cart" className="flex">
             <Icon name="shopping cart" size="tiny" />
             <span> Giỏ hàng</span>
           </Menu.Item>
 
-          <Menu.Item href="https://dev.hainong.vn/" className="flex" onClick={() => handleLogout()}>
+          <Menu.Item className="flex" onClick={() => handleLogout()}>
             <Icon name="sign out" size="tiny" />
             <span>Đăng xuất</span>
           </Menu.Item>
