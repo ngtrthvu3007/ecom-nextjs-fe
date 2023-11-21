@@ -63,8 +63,16 @@ export default function NavigationBar() {
             </div>
             {!profile ? (
               <div className="flex items-center justify-between col-span-2 xl:col-start-10 lg:col-start-10 md:col-start-10 md:col-span-3 sm:hidden">
-                <div>
-                  <button className="text-red-500 mr-3" onClick={() => onOpenModal("login")}>
+                <div className="flex ">
+                  <Link href="/cart">
+                    <div className="md:hidden sm:hidden mr-4 relative">
+                      <ImageIcon alt="Next shop cart" src={IconCart} />
+                      <div className="absolute bg-red-500 py-[1px] px-[5px] rounded-[50%] top-[-10px] left-[5px] text-xs text-white">
+                        {productInCart}
+                      </div>
+                    </div>
+                  </Link>
+                  <button className="text-red-500 mx-3" onClick={() => onOpenModal("login")}>
                     Đăng nhập
                   </button>
                   <button className="text-red-500" onClick={() => onOpenModal("register")}>

@@ -1,14 +1,34 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Icon, Table } from "semantic-ui-react";
 import Image from "next/image";
-import { getAllProductsInCart } from "./useCart";
+import { getAllProductsInCart, removeOneProductInCart } from "./useCart";
 import { AppContext } from "../contexts";
 import NumberFormat from "@/utils/convertPrice.utils";
+import UserInfo from "./UserInfo";
+
 const Cart = () => {
   const { profile } = useContext(AppContext);
-  const products = getAllProductsInCart(profile?._id);
-  console.log(products);
+  const [products, setProducts] = useState([]);
+
+  const handleRemoveProduct = (product_id) => {
+    setProducts((products) => products.filter((product) => product._id !== product_id));
+    removeOneProductInCart(product_id, profile?._id ?? null);
+  };
+  const handleProductAmount = (value, product_id) => {
+    setProducts((products) =>
+      products.map((product) => {
+        if (product?._id === product_id) {
+          return { ...product, product_amount: value };
+        }
+        return product;
+      })
+    );
+  };
+
+  useEffect(() => {
+    setProducts(getAllProductsInCart(profile?._id ?? null));
+  }, [profile]);
 
   return (
     <div className="grid grid-cols-12 gap-4 m-auto">
@@ -41,9 +61,15 @@ const Cart = () => {
                   <Table.Cell>
                     <div className="flex items-center">
                       <div className="w-[5rem] h-[2rem] border pl-3">
-                        <input type="number" value={1} min={1} className="w-full h-full outline-none" />
+                        <input
+                          type="number"
+                          value={product.product_amount}
+                          min={1}
+                          className="w-full h-full outline-none"
+                          onChange={(e) => handleProductAmount(e.target.value, product?._id)}
+                        />
                       </div>
-                      <span className="ml-3">
+                      <span className="ml-3" onClick={() => handleRemoveProduct(product._id)}>
                         <Icon name="trash" size="large" />
                       </span>
                     </div>
@@ -53,6 +79,13 @@ const Cart = () => {
             );
           })}
         </Table>
+
+        <div className="p-5 border rounded">
+          <div className="font-semibold text-lg">Thông tin của bạn</div>
+          <div className="mt-3">
+            <UserInfo products={products} />
+          </div>
+        </div>
       </div>
     </div>
   );

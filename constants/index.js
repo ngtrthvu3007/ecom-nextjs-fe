@@ -37,3 +37,10 @@ export const yubChangePassword = Yup.object({
     .oneOf([Yup.ref("password"), null], "Xác nhận mật khẩu phải trùng khớp với mật khẩu")
     .required("Vui lòng nhập xác nhận mật khẩu"),
 });
+
+export const yubCreatOrder = Yup.object({
+  name: Yup.string().required("Vui lòng nhập tên người nhận hàng"),
+  phone: Yup.string().required("Vui lòng nhập số điện thoại nhận hàng"),
+  address: Yup.string().required("Vui lòng nhập địa chỉ nhận hàng"),
+  paymentMethod: Yup.string().required("Vui lòng chọn hình thức thanh toán"),
+});

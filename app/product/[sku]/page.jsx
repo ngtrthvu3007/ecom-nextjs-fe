@@ -36,6 +36,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     data.user_id = profile?._id ?? null;
+    data.product_amount = 1;
     const product = data;
     addProductToLocalStorage(product);
   };
