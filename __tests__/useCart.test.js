@@ -3,6 +3,7 @@ import {
   totalProductInCart,
   getAllProductsInCart,
   removeOneProductInCart,
+  totalPriceInCart,
 } from "@/app/cart/useCart";
 
 beforeEach(() => {
@@ -82,5 +83,35 @@ describe("removeOneProductInCart function", () => {
       { user_id: "otheruser", _id: "product456", name: "Product2" },
       { user_id: "654fef33c1bb739a6e91ad7", _id: "6541505a4cdce3e4fd519eas", name: "Product2" },
     ]);
+  });
+});
+
+describe("totalPriceInCart", () => {
+  it("calculates total price correctly for a user", () => {
+    const user_id = "654fef33c1bb739a6e91ad77";
+    const products = [
+      { user_id, price: 10, product_amount: 2 },
+      { user_id, price: 15, product_amount: 3 },
+      { user_id: "654fef33c1bb739a6e91asa", price: 5, product_amount: 1 },
+    ];
+
+    localStorage.getItem.mockReturnValue(JSON.stringify(products));
+    const result = totalPriceInCart(user_id);
+    expect(result).toBe(65);
+  });
+
+  it("returns 0 for a user with no products", () => {
+    const user_id = "654fef33c1bb739a6e91ad77";
+    const products = [{ user_id: "654fef33c1bb739a6e91asa", price: 5, product_amount: 1 }];
+    localStorage.getItem.mockReturnValue(JSON.stringify(products));
+    const result = totalPriceInCart(user_id);
+    expect(result).toBe(0);
+  });
+
+  it("returns 0 when localStorage is empty", () => {
+    const user_id = "654fef33c1bb739a6e91ad77";
+    localStorage.getItem.mockReturnValue(null);
+    const result = totalPriceInCart(user_id);
+    expect(result).toBe(0);
   });
 });
